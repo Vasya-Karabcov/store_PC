@@ -8,7 +8,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         category_list = [
             {'name': 'Оперативная память', 'description': 'Все виды оперативной памяти'},
-            {'name': 'Блоки питания', 'description': 'Все виды плоков питания'},
+            {'name': 'Блоки питания', 'description': 'Все виды блоков питания'},
             {'name': 'Система охлаждения', 'description': 'Все виды охлаждения ПК'},
         ]
 

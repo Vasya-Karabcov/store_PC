@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -22,25 +23,22 @@
 
 <div class="container">
     <div class="row text-center">
+        {% for object in category_list %}
         <div class="col-3">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">ПК-1(начальный)</h4>
+                    <h4 class="my-0 font-weight-normal">{{ object }}</h4>
                 </div>
                 <div class="card-body">
-                    <h1 class="card-title pricing-card-title">30.000 руб</h1>
+                    <h1 class="card-title pricing-card-title"></h1>
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>- Процессор - Ryzen 1200(4/4)</li>
-                        <li>- БП - 450 ватт</li>
-                        <li>- Видеокарта - GT1030</li>
-                        <li>- Оперативная память - 8гб(ddr4)</li>
                     </ul>
-                    <button type="button" class="btn btn-success">Купить</button>
+                    <button type="button" class="btn btn-success">Перейти</button>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
             <div class="col-12 col-md">
@@ -50,14 +48,14 @@
             <div class="col-6 col-md">
                 <h5>Каталог</h5>
                 <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Процессоры</a></li>
-                    <li><a class="text-muted" href="#">Материнские платы</a></li>
-                    <li><a class="text-muted" href="#">Видеокарты</a></li>
-                    <li><a class="text-muted" href="#">Оперативная память</a></li>
-                    <li><a class="text-muted" href="#">Блоки питания</a></li>
-                    <li><a class="text-muted" href="#">Системы охлаждения</a></li>
-                    <li><a class="text-muted" href="#">Корпуса</a></li>
-                    <li><a class="text-muted" href="#">Жесткие диски</a></li>
+                    <li><a class="text-muted" href="/product/">Процессоры</a></li>
+                    <li><a class="text-muted" href="/product/">Материнские платы</a></li>
+                    <li><a class="text-muted" href="/product/">Видеокарты</a></li>
+                    <li><a class="text-muted" href="/product/">Оперативная память</a></li>
+                    <li><a class="text-muted" href="/product/">Блоки питания</a></li>
+                    <li><a class="text-muted" href="/product/">Системы охлаждения</a></li>
+                    <li><a class="text-muted" href="/product/">Корпуса</a></li>
+                    <li><a class="text-muted" href="/product/">Жесткие диски</a></li>
                 </ul>
             </div>
             <div class="col-6 col-md">
