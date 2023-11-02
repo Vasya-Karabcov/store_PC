@@ -1,15 +1,22 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView, TemplateView
 
 from catalog.models import Category, Product
 
 
-def index(request):
-    category_list = Category.objects.all()
-    context = {
-        'object_list': category_list,
-        'title': 'Главная'
+class HomeTemplateView(TemplateView):
+    template_name = 'catalog/home_str.html'
+    extra_context = {
+        'title': 'Главная страница'
     }
-    return render(request, 'catalog/home_str.html', context)
+
+
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'catalog/product_list.html'
+    extra_context = {
+        'title': 'Каталог'
+    }
 
 
 def index_con(request):
@@ -24,10 +31,19 @@ def index_con(request):
     return render(request, 'catalog/contact.html', context)
 
 
-def index_product(request):
-    product_list = Product.objects.all()
-    context = {
-        'object_list': product_list,
-        'title': 'Процессоры',
-    }
-    return render(request, 'catalog/product.html', context)
+class ProductListView(ListView):
+    model = Product
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset - queryset.filter(category_id=self.kwargs.get('pk'))
+        return queryset
+
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args, **kwargs)
+
+        category_item = Category.object.get(self.kwargs.get('pk'))
+        context_data['category_pk'] = category_item.pk,
+        context_data['title'] = f'Комплектующие {category_item.name}'
+
+        return context_data
