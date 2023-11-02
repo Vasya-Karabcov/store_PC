@@ -13,7 +13,7 @@ class HomeTemplateView(TemplateView):
 
 class CategoryListView(ListView):
     model = Category
-    template_name = 'catalog/product_list.html'
+    template_name = 'catalog/category_list.html'
     extra_context = {
         'title': 'Каталог'
     }
@@ -36,13 +36,13 @@ class ProductListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset - queryset.filter(category_id=self.kwargs.get('pk'))
+        queryset = queryset.filter(category_id=self.kwargs.get('pk'))
         return queryset
 
     def get_context_data(self, *args, **kwargs):
         context_data = super().get_context_data(*args, **kwargs)
 
-        category_item = Category.object.get(self.kwargs.get('pk'))
+        category_item = Category.objects.get(pk=self.kwargs.get('pk'))
         context_data['category_pk'] = category_item.pk,
         context_data['title'] = f'Комплектующие {category_item.name}'
 

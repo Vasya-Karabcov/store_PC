@@ -1,7 +1,7 @@
 {% extends 'catalog/base.html' %}
 {% block content %}
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">{{ object }}</h1>
+    <h1 class="display-4">Католог</h1>
 </div>
 <div class="container">
     <div class="row text-center">
@@ -12,6 +12,7 @@
                     <h4 class="my-0 font-weight-normal">{{ object }}</h4>
                 </div>
                 <div class="card-body">
+                    <a class="p-2 btn btn-outline-success" href="{% url 'catalog:product_list' object.pk %}">Перейти</a>
                 </div>
             </div>
         </div>
