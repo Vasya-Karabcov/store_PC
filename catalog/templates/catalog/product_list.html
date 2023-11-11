@@ -12,6 +12,9 @@
                     <h4 class="my-0 font-weight-normal">{{ object }}</h4>
                 </div>
                 <div class="card-body">
+                    <a class="p-1 mb-3 btn btn-outline-info" href="{% url 'catalog:view_product' object.pk %}">Перейти</a>
+                    <a class="p-1 mb-3 btn btn-outline-warning" href="{% url 'catalog:edit_product' object.pk %}">Изменить</a>
+                    <a class="p-1 mb-3 btn btn-outline-danger" href="{% url 'catalog:delete_product' object.pk %}">Удалить</a>
                 </div>
             </div>
         </div>
