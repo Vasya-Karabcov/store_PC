@@ -24,11 +24,11 @@ class RegisterView(CreateView):
     template_name = 'users/register.html'
 
     def form_valid(self, form):
-        new_user = form.save()
+        self.object = form.save()
         send_mail(
             subject='Поздравляю с регистрацией',
             message='Вы зарегистрировались на нашей платформе, добро пожаловать!',
             from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[new_user.email]
+            recipient_list=[self.object.email]
         )
         return super().form_valid(form)
