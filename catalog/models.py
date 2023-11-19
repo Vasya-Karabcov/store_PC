@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 
@@ -21,6 +22,8 @@ class Product(models.Model):
     purchase_price = models.IntegerField(verbose_name='Цена за покупку')
     data_creation = models.DateTimeField(null=True, blank=True, verbose_name='Дата создания')
     last_data_modified = models.DateTimeField(null=True, blank=True, verbose_name='Дата последнего изменения')
+
+    get_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Пользователь')
 
     def __str__(self):
         return f'{self.name}, {self.purchase_price} Руб.'

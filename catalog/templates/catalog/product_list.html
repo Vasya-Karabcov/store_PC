@@ -10,6 +10,7 @@
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
                     <h4 class="my-0 font-weight-normal">{{ object }}</h4>
+                    <h4 class="my-0 font-weight-normal">{{ object.get_user|default:"----" }}</h4>
                 </div>
                 <div class="card-body">
                     <a class="p-1 mb-3 btn btn-outline-info" href="{% url 'catalog:view_product' object.pk %}">Перейти</a>
