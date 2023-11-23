@@ -23,7 +23,9 @@ class Product(models.Model):
     data_creation = models.DateTimeField(null=True, blank=True, verbose_name='Дата создания')
     last_data_modified = models.DateTimeField(null=True, blank=True, verbose_name='Дата последнего изменения')
 
-    get_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Пользователь')
+    get_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True,
+                                 verbose_name='Пользователь')
+    is_publish = models.BooleanField(default=False, verbose_name='Опубликовано')
 
     def __str__(self):
         return f'{self.name}, {self.purchase_price} Руб.'
@@ -46,4 +48,3 @@ class Version(models.Model):
     class Meta:
         verbose_name = 'Версия'
         verbose_name_plural = 'Версии'
-

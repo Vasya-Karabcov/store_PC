@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
@@ -22,6 +24,7 @@ class CategoryListView(ListView):
     }
 
 
+@login_required
 def index_con(request):
     context = {
         'title': 'Контакты',
@@ -52,7 +55,7 @@ class ProductListView(ListView):
         return context_data
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:category_list')
@@ -61,17 +64,18 @@ class ProductCreateView(CreateView):
         self.object = form.save()
         self.object.get_user = self.request.user
         self.object.save()
-        
+
         return super().form_valid(form)
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
+    permission_required = 'catalog.edit_product'
     success_url = reverse_lazy('catalog:category_list')
 
     def get_success_url(self):
@@ -99,6 +103,6 @@ class ProductUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:category_list')
