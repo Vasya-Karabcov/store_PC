@@ -73,16 +73,17 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
 
 
-class ProductUpdateView(LoginRequiredMixin, UpdateView):
+class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:category_list')
+    permission_required = 'catalog.change_product'
 
-    def get_object(self, queryset=None):
-        self.object = super().get_object(queryset)
-        if self.object.get_user != self.request.user:
-            raise Http404
-        return self.object
+    # def get_object(self, queryset=None):
+    #     self.object = super().get_object(queryset)
+    #     if self.object.get_user != self.request.user:
+    #         raise f'Нет доступа'
+    #     return self.object
 
     def get_success_url(self):
         return reverse('catalog:edit_product', args=[self.kwargs.get('pk')])

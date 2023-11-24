@@ -14,8 +14,12 @@
                 </div>
                 <div class="card-body">
                     <a class="p-1 mb-3 btn btn-outline-info" href="{% url 'catalog:view_product' object.pk %}">Перейти</a>
+                    {% if perms.catalog.change_product %}
                     <a class="p-1 mb-3 btn btn-outline-warning" href="{% url 'catalog:edit_product' object.pk %}">Изменить</a>
+                    {% endif %}
+                    {% if perms.catalog.delete_product %}
                     <a class="p-1 mb-3 btn btn-outline-danger" href="{% url 'catalog:delete_product' object.pk %}">Удалить</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
