@@ -30,6 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DOMAIN_NAME = os.getenv('DOMAIN_NAME')
+
 # Application definition
 
 INSTALLED_APPS = [
