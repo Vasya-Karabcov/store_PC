@@ -2,9 +2,41 @@
 {% block content %}
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Store_PC</h1>
-    <p class="lead">Store_PC - это магазин по продажам топовых ПК и их комплектующим и ассексуаров</p>
+    <p class="lead">Store_PC - это магазин по продажам топовых ПК и их комплектующим и аксессуаров</p>
 </div>
+ <div class="row gy-5">
+        <h4> Сервис рассылки сообщений</h4>
+        <div class="col">
+            <div class="card shadow-sm text-center" style="background: #e0e0e0">
+                <figure class="p-3 mb-0">
+                    Создано рассылок: {{ count_mailing }} .<br>
+                    <br>
+                    Количество активных рассылок: {{ active_mailings_count }}.<br>
+                    <br>
+                    Количество уникальных клиентов {{ unique_clients_count }}:
+                </figure>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row text-center">
+        {% for item in random_blog_posts %}
+            <div class="col-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">{{ item.title }}</h4>
+                    </div>
 
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    <br>
 <div class="container">
     <div class="row text-center">
     </div>

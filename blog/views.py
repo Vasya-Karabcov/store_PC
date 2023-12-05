@@ -39,13 +39,13 @@ class BlogUpdateView(LoginRequiredMixin, UpdateView):
 
         return super().form_valid(form)
 
-    # def get_object(self, queryset=None):
-    #     title = super().get_object(queryset)
-    #     blog = get_object_or_404(Blog, title=title)
-    #     user_groups = [group.name for group in self.request.user.groups.all()]
-    #     if blog.owner != self.request.user and 'Managers' not in user_groups:
-    #         raise Http404
-    #     return blog
+    def get_object(self, queryset=None):
+        title = super().get_object(queryset)
+        blog = get_object_or_404(Blog, title=title)
+        user_groups = [group.name for group in self.request.user.groups.all()]
+        if blog.owner != self.request.user and 'Managers' not in user_groups:
+            raise Http404
+        return blog
 
     def get_success_url(self):
         return reverse('blog:view', args=[self.kwargs.get("pk")])

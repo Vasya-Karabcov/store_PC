@@ -1,0 +1,18 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+
+    <h2>Client List</h2>
+    {% if user.is_authenticated %}
+        <div class="col-12 mb-5">
+            <a class="btn btn-outline-primary" href="{% url 'catalog:create_client' %}">Добавить запись</a>
+        </div>
+    {% endif %}
+    <ul>
+        {% for client in clients %}
+            <li>{{ client.full_name }} ({{ client.email }})</li>
+            <a class="btn btn-outline-primary" href="{% url 'catalog:update_client' client.pk %}">Редактировать</a>
+            <a class="btn btn-outline-primary" href="{% url 'catalog:delete_client' client.pk %}">Удалить</a>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
